@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1532394190937496}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.9135952, y: -1.5806274, z: 0.07721677}
+  m_LocalPosition: {x: -3.5748901, y: 8.121212, z: 0.07721677}
   m_LocalScale: {x: 4.53, y: 9.61, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb48cb07c7e9a946bd46d5381680ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRef: {fileID: 1554666483474090, guid: 832e7d499076b274e8634b57ddb13aa8, type: 2}
+  playerRef: {fileID: 0}
   bulletSpeed: 10
   bulletPrefab: {fileID: 1011944917888174, guid: e829846dad7ec9943b791d3b40f1bc58,
     type: 2}

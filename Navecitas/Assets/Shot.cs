@@ -7,7 +7,7 @@ public class Shot : MonoBehaviour {
 
     public enum Type { Player , Enemy1 , Enemy3};
 
-    public GameObject playerRef;
+    private GameObject playerRef;
     public int bulletSpeed = 20;
     public GameObject bulletPrefab;
     public int poolSize = 10;
@@ -17,6 +17,11 @@ public class Shot : MonoBehaviour {
     private float lastShot = 0.0f;
     private List<GameObject> projectiles = new List<GameObject>();
 
+
+    private void Start()
+    {
+        playerRef = GameObject.FindGameObjectWithTag("Player");
+    }
     public static GameObject projectilePoolContainer;
     public static GameObject ProjectilePoolContainer
     {
