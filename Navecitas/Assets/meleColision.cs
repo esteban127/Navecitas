@@ -12,8 +12,8 @@ public class meleColision : MonoBehaviour {
             if (collider.tag == "Enemy")
             {
 
-            HealthManager healthManager = collider.GetComponentInParent<HealthManager>();
-            Debug.Log("Got Health Manager" + healthManager.GetType().ToString());
+                HealthManager healthManager = collider.GetComponentInParent<HealthManager>();
+                Debug.Log("Got Health Manager" + healthManager.GetType().ToString());
                 if (healthManager != null)
                 {
                     this.GetComponent<HealthManager>().TakeDamage();

@@ -20,8 +20,7 @@ public class Projectile : MonoBehaviour {
         {
             gameObject.SetActive(false);
             this.direction = Vector3.zero;
-            HealthManager healthManager = collider.GetComponentInParent<HealthManager>();
-            Debug.Log("Got Health Manager" + healthManager.GetType().ToString());
+            HealthManager healthManager = collider.GetComponentInParent<HealthManager>();            
             if(healthManager != null)
             {
                 healthManager.TakeDamage();
