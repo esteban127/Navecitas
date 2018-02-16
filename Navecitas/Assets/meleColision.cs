@@ -7,7 +7,7 @@ public class meleColision : MonoBehaviour {
 	
         void OnTriggerEnter2D(Collider2D collider)
         {
-        Debug.Log("meleColision detected");
+            Debug.Log("meleColision detected");
 
             if (collider.tag == "Enemy")
             {
@@ -16,13 +16,23 @@ public class meleColision : MonoBehaviour {
                 Debug.Log("Got Health Manager" + healthManager.GetType().ToString());
                 if (healthManager != null)
                 {
-                    this.GetComponent<HealthManager>().TakeDamage();
-                    healthManager.TakeDamage();
+                    this.GetComponent<HealthManager>().TakeDamage(1);
+                    healthManager.TakeDamage(1);
                 }
                 else
                 {
                     Debug.LogError("Projectile collided with object that doesn't have a Health Manager");
                 }
             }
+
+            if (collider.tag == "PowerUp")
+            {
+
+                this.gameObject.GetComponent<Shot>().AddSpecial();
+
+                collider.gameObject.SetActive(false); 
+
+            }
+
         }
 }

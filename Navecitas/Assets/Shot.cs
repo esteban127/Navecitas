@@ -7,12 +7,21 @@ public class Shot : MonoBehaviour {
 
     public enum Type { Player , Enemy1 , Enemy3};
 
-    private GameObject playerRef;
-    public int bulletSpeed = 20;
+
+
+    public Type shooterType;
     public GameObject bulletPrefab;
-    public int poolSize = 10;
-    public Type shooterType; 
+
+    public int specialCount = 1;
+    public float specialColdown;
+    public float specialDuration = 5.0f;
+
+    public int bulletSpeed = 20;    
+    public int poolSize = 10;    
     public float rate;
+
+    private float lastSpecial = 0.0f;
+    private GameObject playerRef;
     private Vector3 direction;
     private float lastShot = 0.0f;
     private List<GameObject> projectiles = new List<GameObject>();
@@ -20,6 +29,7 @@ public class Shot : MonoBehaviour {
 
     private void Start()
     {
+        
         playerRef = GameObject.FindGameObjectWithTag("Player");
     }
     public static GameObject projectilePoolContainer;
@@ -41,23 +51,47 @@ public class Shot : MonoBehaviour {
 
     void Update () {
         
-        if(shooterType == Type.Enemy1 || shooterType == Type.Enemy3 || Input.GetAxisRaw("Jump") == 1)
+        
+        if (this.lastShot < this.rate)
         {
-            if (this.lastShot < this.rate)
+            this.lastShot += Time.deltaTime;
+
+        }
+        else
+        {
+           
+            Fire();
+                       
+            this.lastShot = 0.0f;
+
+        }
+
+        if (this.lastSpecial < this.specialColdown)
+        {
+
+            this.lastSpecial += Time.deltaTime;
+
+        }
+        else
+        {
+            
+            if (shooterType == Type.Player && Input.GetButtonDown("Jump") && specialCount > 0)
             {
-                this.lastShot += Time.deltaTime;
+                Debug.Log("Special");
+                Special();
+                specialCount--;
+                this.lastSpecial = 0.0f;
 
             }
-            else
-            {
-                
-                Fire();
-                this.lastShot = 0.0f;
-            }
+            
 
-        }        
+        }
+
+        
 
     }
+
+    
 
     private void Fire()
     {
@@ -163,5 +197,21 @@ public class Shot : MonoBehaviour {
                 break;
         }
         
+    }
+
+
+    private void Special()
+    {
+        this.transform.Find("Special").gameObject.SetActive(true);  
+        
+        this.GetComponentInChildren<Special>().transform.position = this.transform.position - new Vector3(0, -1, 0);
+        this.GetComponentInChildren<Special>().targetTag = "Enemy";
+        this.GetComponentInChildren<Special>().duration = specialDuration;        
+        
+    }
+
+    public void AddSpecial()
+    {
+        this.specialCount++;
     }
 }

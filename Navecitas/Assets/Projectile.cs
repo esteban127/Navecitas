@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
             HealthManager healthManager = collider.GetComponentInParent<HealthManager>();            
             if(healthManager != null)
             {
-                healthManager.TakeDamage();
+                healthManager.TakeDamage(1);
             } else
             {
                 Debug.LogError("Projectile collided with object that doesn't have a Health Manager");
