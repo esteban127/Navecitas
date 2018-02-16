@@ -13,6 +13,7 @@ public class Shot : MonoBehaviour {
     public GameObject bulletPrefab;
 
     public int specialCount = 1;
+    public int specialDamage = 10;
     public float specialColdown;
     public float specialDuration = 5.0f;
 
@@ -206,8 +207,9 @@ public class Shot : MonoBehaviour {
         
         this.GetComponentInChildren<Special>().transform.position = this.transform.position - new Vector3(0, -1, 0);
         this.GetComponentInChildren<Special>().targetTag = "Enemy";
-        this.GetComponentInChildren<Special>().duration = specialDuration;        
-        
+        this.GetComponentInChildren<Special>().duration = specialDuration;
+        this.GetComponentInChildren<Special>().damage = specialDamage;
+
     }
 
     public void AddSpecial()

@@ -6,6 +6,7 @@ public class Special : MonoBehaviour {
 
     public string targetTag { get; set; }
     public float duration { get; set; }
+    public int damage { get; set; }
 
     // Update is called once per frame
     void Update () {
@@ -31,7 +32,7 @@ public class Special : MonoBehaviour {
             if (healthManager != null)
             {
 
-                healthManager.TakeDamage(3);
+                healthManager.TakeDamage(this.damage);
 
             }
             else
