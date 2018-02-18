@@ -3,36 +3,71 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class meleColision : MonoBehaviour {
+        
+    public enum Type { Player, Enemy}
 
+    public Type SelectType;
+    public float invTime = 1.5f;
+
+    private float currentInv = 0.0f;
 	
-        void OnTriggerEnter2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (currentInv<= 0)
         {
-            Debug.Log("meleColision detected");
+            //Stop playing inv animation
 
-            if (collider.tag == "Enemy")
+        
+            switch (SelectType)
             {
+                case Type.Player:
 
-                HealthManager healthManager = collider.GetComponentInParent<HealthManager>();
-                Debug.Log("Got Health Manager" + healthManager.GetType().ToString());
-                if (healthManager != null)
-                {
-                    this.GetComponent<HealthManager>().TakeDamage(1);
-                    healthManager.TakeDamage(1);
-                }
-                else
-                {
-                    Debug.LogError("Projectile collided with object that doesn't have a Health Manager");
-                }
+
+                    switch (collider.tag)
+                    {
+                        case "Enemy":                           
+                            
+                            this.GetComponent<HealthManager>().TakeDamage(1);
+                            collider.GetComponent<HealthManager>().TakeDamage(1);
+                            currentInv = invTime;                          
+
+                            break;
+
+                        case "PowerUp":
+
+                            this.gameObject.GetComponent<Shot>().AddSpecial();
+
+                            collider.gameObject.SetActive(false);
+
+                            break;
+
+                        case "EnemyBullet":
+
+                            this.GetComponent<HealthManager>().TakeDamage(1);
+                            currentInv = invTime;
+                            collider.gameObject.SetActive(false);
+
+                            break;
+
+                    }     
+                   
+                    break;
+
+                case Type.Enemy:
+
+                    if(collider.tag == "PlayerBullet")
+                    {
+                        this.GetComponent<HealthManager>().TakeDamage(1);
+                        currentInv = invTime;
+                        collider.gameObject.SetActive(false);
+                    }
+                    break;
             }
-
-            if (collider.tag == "PowerUp")
-            {
-
-                this.gameObject.GetComponent<Shot>().AddSpecial();
-
-                collider.gameObject.SetActive(false); 
-
-            }
-
         }
+        else
+        {
+            //Play inv animation
+            currentInv = currentInv - Time.deltaTime * 20;
+        }
+    }
 }

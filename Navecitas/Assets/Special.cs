@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Special : MonoBehaviour {
 
-    public string targetTag { get; set; }
+
     public float duration { get; set; }
     public int damage { get; set; }
 
@@ -25,20 +25,12 @@ public class Special : MonoBehaviour {
     {
 
 
-        if (collider.tag == targetTag)
-        {
-                    
-            HealthManager healthManager = collider.GetComponentInParent<HealthManager>();
-            if (healthManager != null)
-            {
+        if (collider.tag == "Enemy")
+        {     
+           
+                collider.GetComponent<HealthManager>().TakeDamage(this.damage);
 
-                healthManager.TakeDamage(this.damage);
-
-            }
-            else
-            {
-                Debug.LogError("Projectile collided with object that doesn't have a Health Manager");
-            }
+            
         }
 
         if (collider.tag == "EnemyBullet")

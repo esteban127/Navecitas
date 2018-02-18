@@ -24,6 +24,8 @@ GameObject:
   - component: {fileID: 114030093043423788}
   - component: {fileID: 114225028647654688}
   - component: {fileID: 114597340599021018}
+  - component: {fileID: 114087556230924770}
+  - component: {fileID: 50864428392513272}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Enemy
@@ -44,6 +46,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50864428392513272
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532394190937496}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61286611395678854
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -80,13 +102,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbb48cb07c7e9a946bd46d5381680ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRef: {fileID: 0}
-  bulletSpeed: 10
+  shooterType: 2
   bulletPrefab: {fileID: 1011944917888174, guid: e829846dad7ec9943b791d3b40f1bc58,
     type: 2}
+  specialCount: 1
+  specialDamage: 10
+  specialColdown: 0
+  specialDuration: 5
+  bulletSpeed: 10
   poolSize: 15
-  shooterType: 2
   rate: 0.5
+--- !u!114 &114087556230924770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1532394190937496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291dcefc0d0ef964bacbb323622dc0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectType: 1
+  invTime: 0
+  currentInv: 0
 --- !u!114 &114225028647654688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,7 +138,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Initialhealth: 4
+  health: 0
   dead: 0
+  haveDrop: 0
+  dropPrefav: {fileID: 0}
 --- !u!114 &114597340599021018
 MonoBehaviour:
   m_ObjectHideFlags: 1

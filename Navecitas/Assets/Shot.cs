@@ -119,7 +119,6 @@ public class Shot : MonoBehaviour {
                 // Adjust for character height
                 
                 playerProjectile.transform.position = transform.position - new Vector3(0, -1, 0);
-                playerProjectile.GetComponent<Projectile>().targetTag = "Enemy";
                 playerProjectile.GetComponent<Projectile>().bulletSpeed = this.bulletSpeed;
                 direction = new Vector3(0, 1, 0);
                 playerProjectile.GetComponent<Projectile>().direction = this.direction;
@@ -149,7 +148,6 @@ public class Shot : MonoBehaviour {
 
                 // Adjust for character height
                 enemy1Projectile.transform.position = transform.position - new Vector3(0, 0.5f, 0);
-                enemy1Projectile.GetComponent<Projectile>().targetTag = "Player";
                 enemy1Projectile.GetComponent<Projectile>().bulletSpeed = this.bulletSpeed;
                 direction = new Vector3(0, -1, 0);
                 enemy1Projectile.GetComponent<Projectile>().direction = this.direction;
@@ -180,7 +178,6 @@ public class Shot : MonoBehaviour {
 
                 // Adjust for character height
                 enemy3Projectile.transform.position = transform.position - new Vector3(0, 0.7f, 0);
-                enemy3Projectile.GetComponent<Projectile>().targetTag = "Player";
                 enemy3Projectile.GetComponent<Projectile>().bulletSpeed = this.bulletSpeed;
                 Vector3 aim = playerRef.transform.position - this.transform.position;
                 if (Mathf.Abs(aim.x) < Mathf.Abs(aim.y) )
@@ -206,7 +203,6 @@ public class Shot : MonoBehaviour {
         this.transform.Find("Special").gameObject.SetActive(true);  
         
         this.GetComponentInChildren<Special>().transform.position = this.transform.position - new Vector3(0, -1, 0);
-        this.GetComponentInChildren<Special>().targetTag = "Enemy";
         this.GetComponentInChildren<Special>().duration = specialDuration;
         this.GetComponentInChildren<Special>().damage = specialDamage;
 

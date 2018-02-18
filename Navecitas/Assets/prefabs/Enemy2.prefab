@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 61470537023755248}
   - component: {fileID: 114592730238150872}
   - component: {fileID: 114906370346206886}
+  - component: {fileID: 114234049144600720}
+  - component: {fileID: 50605561583741356}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -43,6 +45,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50605561583741356
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048884604620824}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!61 &61470537023755248
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -68,6 +90,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15334406, y: 0.11092922}
   m_EdgeRadius: 0
+--- !u!114 &114234049144600720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1048884604620824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291dcefc0d0ef964bacbb323622dc0f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectType: 1
+  invTime: 0
+  currentInv: 0
 --- !u!114 &114592730238150872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -80,7 +116,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Initialhealth: 1
+  health: 0
   dead: 0
+  haveDrop: 0
+  dropPrefav: {fileID: 0}
 --- !u!114 &114906370346206886
 MonoBehaviour:
   m_ObjectHideFlags: 1
