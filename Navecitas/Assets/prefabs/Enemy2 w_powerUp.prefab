@@ -31,7 +31,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4762972976667950
 Transform:
   m_ObjectHideFlags: 1
@@ -39,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1103034854956530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.31, y: 4.49, z: 0.07721677}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalPosition: {x: -8.7283945, y: -7.1885576, z: 0.07721677}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -77,18 +77,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0021207184, y: -0.0063621923}
+  m_Offset: {x: -0.0021185875, y: 0.09298396}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
+    oldSize: {x: 6.5, y: 6.5}
     newSize: {x: 0.2, y: 0.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15334406, y: 0.11092922}
+  m_Size: {x: 5.3991632, y: 3.8863244}
   m_EdgeRadius: 0
 --- !u!114 &114650774581910884
 MonoBehaviour:
@@ -101,11 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc027c342cfebed40a5625900bd1d525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UserType: 2
   Initialhealth: 1
-  health: 0
   dead: 0
   haveDrop: 1
   dropPrefav: {fileID: 1037156512973306, guid: 783314663b6c5584fa1e9d3e67803800, type: 2}
+  explosion: {fileID: 8300000, guid: 28e0a8c0572f16a4fb4cac920b6229c4, type: 3}
+  takeDamage: {fileID: 0}
 --- !u!114 &114707891196326312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfce9b856082894288270dc892651ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 6
+  velocity: 3
   enemyType: 1
 --- !u!114 &114849542379238384
 MonoBehaviour:
@@ -132,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SelectType: 1
   invTime: 0
-  currentInv: 0
+  pickUp: {fileID: 0}
 --- !u!212 &212761719678226658
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -167,8 +169,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.9338235, g: 0, b: 0.83078086, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 17c70788d25031f4393e60d1cdbd320f, type: 3}
+  m_Color: {r: 0.8455882, g: 0.8455882, b: 0.38548875, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

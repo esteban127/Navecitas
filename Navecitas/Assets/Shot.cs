@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shot : MonoBehaviour {
 
@@ -11,6 +12,8 @@ public class Shot : MonoBehaviour {
 
     public Type shooterType;
     public GameObject bulletPrefab;
+    public AudioClip playerShootSound;
+    public AudioClip specialSound;
 
     public int specialCount = 1;
     public int specialDamage = 10;
@@ -32,6 +35,7 @@ public class Shot : MonoBehaviour {
     {
         
         playerRef = GameObject.FindGameObjectWithTag("Player");
+        
     }
     public static GameObject projectilePoolContainer;
     public static GameObject ProjectilePoolContainer
@@ -79,8 +83,8 @@ public class Shot : MonoBehaviour {
             if (shooterType == Type.Player && Input.GetButtonDown("Jump") && specialCount > 0)
             {
                 Debug.Log("Special");
-                Special();
                 specialCount--;
+                Special();                
                 this.lastSpecial = 0.0f;
 
             }
@@ -113,7 +117,7 @@ public class Shot : MonoBehaviour {
                     playerProjectile = projectiles.Find(x => !x.activeInHierarchy);
                 }
 
-
+                AudioSource.PlayClipAtPoint(playerShootSound, new Vector3(0, 0, 0));
                 playerProjectile.SetActive(true);
 
                 // Adjust for character height
@@ -200,8 +204,14 @@ public class Shot : MonoBehaviour {
 
     private void Special()
     {
-        this.transform.Find("Special").gameObject.SetActive(true);  
-        
+        this.transform.Find("Special").gameObject.SetActive(true);
+
+        AudioSource.PlayClipAtPoint(specialSound, new Vector3(0, 0, 0));
+
+        Transform reference = FindObjectOfType<Canvas>().transform.Find("PowerUpCount");
+
+        reference.GetComponent<Text>().text = "x" + specialCount;
+
         this.GetComponentInChildren<Special>().transform.position = this.transform.position - new Vector3(0, -1, 0);
         this.GetComponentInChildren<Special>().duration = specialDuration;
         this.GetComponentInChildren<Special>().damage = specialDamage;
@@ -211,5 +221,8 @@ public class Shot : MonoBehaviour {
     public void AddSpecial()
     {
         this.specialCount++;
+        Transform reference = FindObjectOfType<Canvas>().transform.Find("PowerUpCount");
+
+        reference.GetComponent<Text>().text = "x" + specialCount;
     }
 }

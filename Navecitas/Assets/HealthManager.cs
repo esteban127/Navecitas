@@ -2,14 +2,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour {
 
+
+    public enum Type { Player, Enemy1,Enemy2, Enemy3 };
+
+
+
+    public Type UserType;
     public int Initialhealth = 5;
     private int health;
     public bool dead = false;
     public bool haveDrop = false;
     public GameObject dropPrefav;
+    public AudioClip explosion;
+    public AudioClip takeDamage;
 
     private List<GameObject> drops = new List<GameObject>();
 
@@ -40,6 +49,16 @@ public class HealthManager : MonoBehaviour {
 
         this.health = this.health - dmg;
 
+        if (this.tag == "Player")
+        {
+            Transform reference = FindObjectOfType<Canvas>().transform.Find("HPCount");
+
+            reference.GetComponent<Text>().text = "x" + health;
+        
+            AudioSource.PlayClipAtPoint(takeDamage,new Vector3( 0, 0, 0));
+            
+        }
+
         if (this.health <= 0)
         {
             this.Death();
@@ -53,10 +72,29 @@ public class HealthManager : MonoBehaviour {
 
     public void Death()
     {
+
+        AudioSource.PlayClipAtPoint(explosion, new Vector3(0, 0, 0));
         if (haveDrop)
         {
             DropPowerUp();
         }
+        ScoreTracker reference = FindObjectOfType<Canvas>().GetComponentInChildren<ScoreTracker>();
+        switch (UserType)
+        {
+            case Type.Enemy1:
+                reference.AddScore(100);
+                break;
+            case Type.Enemy2:
+                reference.AddScore(25);
+                break;
+            case Type.Enemy3:
+                reference.AddScore(500);
+                break;
+            case Type.Player:
+                FindObjectOfType<Canvas>().transform.Find("EndGame").gameObject.SetActive(true);
+                break;                
+        }     
+
         this.gameObject.SetActive(false);
         this.dead = true;
        

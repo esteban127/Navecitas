@@ -19,7 +19,7 @@ public class EnemyMovement : MonoBehaviour {
                 this.transform.position += new Vector3(0, -1, 0) * Time.deltaTime * velocity;
                 break;
             case Type.Enemy2:
-                this.transform.position += new Vector3(1 * direction, -0.2f, 0) * Time.deltaTime * velocity;
+                this.transform.position += new Vector3(1 * direction, -0.8f, 0) * Time.deltaTime * velocity;
                 if (this.transform.position.x <= -4.9){
                     direction = 1;
                 }
